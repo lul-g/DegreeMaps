@@ -5,9 +5,8 @@ import { getMajor } from '@/lib/utils';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Spinner } from '@nextui-org/react';
 import { useSearchParams } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 
-export default function page({ params }: { params: { id: number } }) {
+export default function Page({ params }: { params: { id: number } }) {
   const {
     data: major,
     isLoading,

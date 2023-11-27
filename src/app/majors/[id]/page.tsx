@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { Spinner } from '@nextui-org/react';
 import { Path } from '@/app/(types)/types';
 
-export default function page({ params }: { params: { id: number } }) {
+export default function Page({ params }: { params: { id: number } }) {
   const {
     data: major,
     isLoading,
