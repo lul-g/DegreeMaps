@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import { Path } from '@/app/(types)/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
