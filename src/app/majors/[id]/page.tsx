@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import PathsContentComponent from './PathsContentComp';
 import { Input } from '@/components/ui/input';
@@ -6,33 +5,34 @@ import { Button } from '@/components/ui/button';
 import { getMajor } from '@/lib/utils';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Spinner } from '@nextui-org/react';
-import { Path } from '@/app/(types)/types';
+import { Major, Path } from '@/app/(types)/types';
 
-export default function Page({ params }: { params: { id: number } }) {
-  const {
-    data: major,
-    isLoading,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ['major'],
-    queryFn: async () => await getMajor(params.id),
-  });
+export default async function page({ params }: { params: { id: number } }) {
+  // const {
+  //   data: major,
+  //   isLoading,
+  //   isError,
+  //   error,
+  // } = useQuery({
+  //   queryKey: ['major'],
+  //   queryFn: async () => await getMajor(params.id),
+  // });
 
-  if (isLoading) {
-    return (
-      <Spinner
-        className="flex items-center justify-center min-h-screen"
-        label="Fetching Major..."
-        color="warning"
-      />
-    );
-  }
-  if (isError) {
-    console.log(isError);
-    return <pre>{JSON.stringify(error)}</pre>;
-  }
-  const paths = major?.paths?.filter((p: Path) => p.isDraft == false);
+  // if (isLoading) {
+  //   return (
+  //     <Spinner
+  //       className="flex items-center justify-center min-h-screen"
+  //       label="Fetching Major..."
+  //       color="warning"
+  //     />
+  //   );
+  // }
+  // if (isError) {
+  //   console.log(isError);
+  //   return <pre>{JSON.stringify(error)}</pre>;
+  // }
+  const major: Major = await getMajor(params.id);
+  const paths = major.paths.filter((p: Path) => p.isDraft == false);
   console.log(paths);
   return (
     <section className="bg-main_pattern min-h-screen py-24">

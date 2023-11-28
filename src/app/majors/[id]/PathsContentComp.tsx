@@ -25,7 +25,7 @@ function PathsContentComponent({
   const [selectedPathId, setSelectedPathId] = React.useState<number>(
     paths[0].id
   );
-  const [selectedPath, setSelectedPath] = React.useState<Path | null>(paths[0]);
+  const [selectedPath, setSelectedPath] = React.useState<Path | null>();
 
   function handleChange(pathId: number) {
     console.log(`handleChange| current path: ${pathId}`);
@@ -68,8 +68,8 @@ function PathsContentComponent({
             </SelectContent>
           </Select>
           <ContentArea
-            publishContentSet={selectedPath.publishContentSet}
-            name={selectedPath.name}
+            publishContentSet={selectedPath?.publishContentSet}
+            name={selectedPath?.name}
             fourYearPlan={fourYearPlan}
           />
         </>
