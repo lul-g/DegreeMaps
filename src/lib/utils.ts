@@ -34,6 +34,7 @@ export async function getPath(id: number) {
   const result = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/paths/${id}`
   );
+  console.log(result.data);
   return result.data;
 }
 

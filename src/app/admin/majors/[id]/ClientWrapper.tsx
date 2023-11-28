@@ -18,6 +18,7 @@ function ClientWrapper({ major, id }: { major: Major; id: number }) {
   const [selectedPath, setSelectedPath] = React.useState<Path | null>(
     major.paths?.length ? major.paths[0] : null
   );
+  const [updateKey, setUpdateKey] = useState(false);
   return (
     <>
       <CardHeader className="p-0 mt-5 mb-10">
@@ -32,6 +33,8 @@ function ClientWrapper({ major, id }: { major: Major; id: number }) {
             setCreateInfo={setCreateInfo}
             majorId={id}
             selectedPath={selectedPath}
+            updateKey={updateKey}
+            setUpdateKey={setUpdateKey}
           />
         </div>
       </CardHeader>
@@ -43,6 +46,7 @@ function ClientWrapper({ major, id }: { major: Major; id: number }) {
         setSelectedPathId={setSelectedPathId}
         selectedPath={selectedPath}
         setSelectedPath={setSelectedPath}
+        updateKey={updateKey}
       />
     </>
   );

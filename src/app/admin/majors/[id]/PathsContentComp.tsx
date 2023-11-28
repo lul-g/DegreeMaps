@@ -39,6 +39,7 @@ function PathsContentComponent({
   setSelectedPathId,
   selectedPath,
   setSelectedPath,
+  updateKey,
 }: {
   createInfo: CreateInfoType;
   paths: Path[] | undefined;
@@ -47,6 +48,7 @@ function PathsContentComponent({
   setSelectedPathId: React.Dispatch<React.SetStateAction<number | null>>;
   selectedPath: Path | null;
   setSelectedPath: React.Dispatch<React.SetStateAction<Path | null>>;
+  updateKey: boolean;
 }) {
   const [selectedLevel, setSelectedLevel] = React.useState<string>('early');
 
@@ -78,12 +80,13 @@ function PathsContentComponent({
   useEffect(() => {
     async function fetch_setPath() {
       const path: Path = await getPath(selectedPathId!);
+      console.log('check emoji', path.isDraft);
       setSelectedPath(path);
       setContentArr(path.draftContentSet);
     }
     fetch_setPath();
     setSaveState('');
-  }, [selectedPathId, selectedLevel]);
+  }, [selectedPathId, updateKey, selectedLevel]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -138,7 +141,7 @@ function PathsContentComponent({
             <Button onClick={saveDraft} className="bg-gray-800">
               Save As Draft
             </Button>
-            <Button className="bg-gray-800">Delete/Trash</Button>
+            {/* <Button className="bg-gray-800">Delete/Trash</Button> */}
           </div>
         </div>
         <CardContent className="pt-6">

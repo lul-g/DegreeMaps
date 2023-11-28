@@ -37,14 +37,14 @@ export default async function page({ params }: { params: { id: number } }) {
   return (
     <section className="bg-main_pattern min-h-screen py-24">
       <section className="max-w-[1000px] mx-auto  min-h-screen text-black">
-        <div className="flex gap-4 items-center my-4">
+        {/* <div className="flex gap-4 items-center my-4">
           <div className="border-2 border-black rounded-md text-3xl font-extrabold flex flex-col justify-center items-center p-2">
             <span className="font-semibold">Major</span>
             <span>Maps</span>
           </div>
           <Input className="" placeholder="🔍 Search majors" />
           <Button>Search</Button>
-        </div>
+        </div> */}
         <div className=" mb-5 text-center flex flex-col">
           <h1 className="text-5xl font-bold mb-2">{major.majorTxt}</h1>
           <span className="font-bold">{major.collegeTxt}</span>

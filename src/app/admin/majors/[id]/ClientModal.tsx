@@ -1,5 +1,4 @@
 'use client';
-
 import { CreateInfoType, Path } from '@/app/(types)/types';
 import { Button } from '@/components/ui/button';
 import {
@@ -37,12 +36,16 @@ function ClientModal({
   setCreateInfo,
   selectedPath,
   setSelectedPathId,
+  setUpdateKey,
+  updateKey,
 }: {
   majorId: number;
   createInfo: CreateInfoType;
   setCreateInfo: React.Dispatch<React.SetStateAction<CreateInfoType>>;
   selectedPath: Path | null;
   setSelectedPathId: React.Dispatch<React.SetStateAction<number | null>>;
+  setUpdateKey: React.Dispatch<React.SetStateAction<boolean>>;
+  updateKey: boolean;
 }) {
   const createRef = useRef<HTMLInputElement>(null);
   const updateRef = useRef<HTMLInputElement>(null);
@@ -62,7 +65,6 @@ function ClientModal({
       console.log('name is null');
       return;
     }
-    console.log('isdraft', isDraft);
     const response = await updatePath({
       ...selectedPath!,
       name: name!,
@@ -70,13 +72,15 @@ function ClientModal({
       majorId: majorId,
     });
     //toasityf
-    console.log(response?.data.pathId);
     setSelectedPathId(response?.data.pathId);
+    setUpdateKey(!updateKey);
     router.refresh();
   }
 
   useEffect(() => {
-    console.log(clicked);
+    setIsDraft(selectedPath?.isDraft);
+  }, [selectedPath]);
+  useEffect(() => {
     if (!clicked) {
       return;
     }
@@ -252,9 +256,9 @@ function ClientModal({
         </DialogContent>
       </Dialog>
       <AlertDialog>
-        <AlertDialogTrigger asChild>
+        {/* <AlertDialogTrigger asChild>
           <Button variant="outline">Delete Path</Button>
-        </AlertDialogTrigger>
+        </AlertDialogTrigger> */}
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
