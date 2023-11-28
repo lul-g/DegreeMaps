@@ -32,7 +32,7 @@ export default function Page({ params }: { params: { id: number } }) {
     console.log(isError);
     return <pre>{JSON.stringify(error)}</pre>;
   }
-  const paths = major.paths.filter((p: Path) => p.isDraft == false);
+  const paths = major?.paths?.filter((p: Path) => p.isDraft == false);
   console.log(paths);
   return (
     <section className="bg-main_pattern min-h-screen py-24">
